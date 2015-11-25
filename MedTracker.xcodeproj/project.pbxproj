@@ -9,13 +9,16 @@
 /* Begin PBXBuildFile section */
 		F2DDE6CD1C0578CF008A8288 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DDE6CC1C0578CF008A8288 /* main.m */; };
 		F2DDE6D01C0578CF008A8288 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DDE6CF1C0578CF008A8288 /* AppDelegate.m */; };
-		F2DDE6D31C0578CF008A8288 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DDE6D21C0578CF008A8288 /* ViewController.m */; };
 		F2DDE6D61C0578CF008A8288 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2DDE6D41C0578CF008A8288 /* Main.storyboard */; };
 		F2DDE6D91C0578CF008A8288 /* MedTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F2DDE6D71C0578CF008A8288 /* MedTracker.xcdatamodeld */; };
 		F2DDE6DB1C0578CF008A8288 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2DDE6DA1C0578CF008A8288 /* Assets.xcassets */; };
 		F2DDE6DE1C0578CF008A8288 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2DDE6DC1C0578CF008A8288 /* LaunchScreen.storyboard */; };
 		F2DDE6E91C0578CF008A8288 /* MedTrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DDE6E81C0578CF008A8288 /* MedTrackerTests.m */; };
 		F2DDE6F41C0578CF008A8288 /* MedTrackerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DDE6F31C0578CF008A8288 /* MedTrackerUITests.m */; };
+		F2DDE7051C059A5D008A8288 /* PatientsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DDE7041C059A5C008A8288 /* PatientsTVC.m */; };
+		F2DDE7081C059A75008A8288 /* PrescriptionTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DDE7071C059A75008A8288 /* PrescriptionTVC.m */; };
+		F2DDE70B1C059A8B008A8288 /* AddPatientVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DDE70A1C059A8B008A8288 /* AddPatientVC.m */; };
+		F2DDE70E1C059AAD008A8288 /* AddPrescriptionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DDE70D1C059AAD008A8288 /* AddPrescriptionVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +43,6 @@
 		F2DDE6CC1C0578CF008A8288 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F2DDE6CE1C0578CF008A8288 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F2DDE6CF1C0578CF008A8288 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F2DDE6D11C0578CF008A8288 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		F2DDE6D21C0578CF008A8288 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		F2DDE6D51C0578CF008A8288 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F2DDE6D81C0578CF008A8288 /* MedTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MedTracker.xcdatamodel; sourceTree = "<group>"; };
 		F2DDE6DA1C0578CF008A8288 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -53,6 +54,14 @@
 		F2DDE6EF1C0578CF008A8288 /* MedTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2DDE6F31C0578CF008A8288 /* MedTrackerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MedTrackerUITests.m; sourceTree = "<group>"; };
 		F2DDE6F51C0578CF008A8288 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2DDE7031C059A5C008A8288 /* PatientsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PatientsTVC.h; path = ../PatientsTVC.h; sourceTree = "<group>"; };
+		F2DDE7041C059A5C008A8288 /* PatientsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PatientsTVC.m; path = ../PatientsTVC.m; sourceTree = "<group>"; };
+		F2DDE7061C059A75008A8288 /* PrescriptionTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrescriptionTVC.h; path = ../PrescriptionTVC.h; sourceTree = "<group>"; };
+		F2DDE7071C059A75008A8288 /* PrescriptionTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrescriptionTVC.m; path = ../PrescriptionTVC.m; sourceTree = "<group>"; };
+		F2DDE7091C059A8A008A8288 /* AddPatientVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddPatientVC.h; path = ../AddPatientVC.h; sourceTree = "<group>"; };
+		F2DDE70A1C059A8B008A8288 /* AddPatientVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddPatientVC.m; path = ../AddPatientVC.m; sourceTree = "<group>"; };
+		F2DDE70C1C059AAD008A8288 /* AddPrescriptionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddPrescriptionVC.h; path = ../AddPrescriptionVC.h; sourceTree = "<group>"; };
+		F2DDE70D1C059AAD008A8288 /* AddPrescriptionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddPrescriptionVC.m; path = ../AddPrescriptionVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,10 +112,16 @@
 		F2DDE6CA1C0578CF008A8288 /* MedTracker */ = {
 			isa = PBXGroup;
 			children = (
-				F2DDE6CE1C0578CF008A8288 /* AppDelegate.h */,
-				F2DDE6CF1C0578CF008A8288 /* AppDelegate.m */,
-				F2DDE6D11C0578CF008A8288 /* ViewController.h */,
-				F2DDE6D21C0578CF008A8288 /* ViewController.m */,
+				F2DDE7021C058F7C008A8288 /* AppDelegate */,
+				F2DDE7011C058B8D008A8288 /* Data */,
+				F2DDE7031C059A5C008A8288 /* PatientsTVC.h */,
+				F2DDE7041C059A5C008A8288 /* PatientsTVC.m */,
+				F2DDE7061C059A75008A8288 /* PrescriptionTVC.h */,
+				F2DDE7071C059A75008A8288 /* PrescriptionTVC.m */,
+				F2DDE7091C059A8A008A8288 /* AddPatientVC.h */,
+				F2DDE70A1C059A8B008A8288 /* AddPatientVC.m */,
+				F2DDE70C1C059AAD008A8288 /* AddPrescriptionVC.h */,
+				F2DDE70D1C059AAD008A8288 /* AddPrescriptionVC.m */,
 				F2DDE6D41C0578CF008A8288 /* Main.storyboard */,
 				F2DDE6DA1C0578CF008A8288 /* Assets.xcassets */,
 				F2DDE6DC1C0578CF008A8288 /* LaunchScreen.storyboard */,
@@ -141,6 +156,22 @@
 				F2DDE6F51C0578CF008A8288 /* Info.plist */,
 			);
 			path = MedTrackerUITests;
+			sourceTree = "<group>";
+		};
+		F2DDE7011C058B8D008A8288 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		F2DDE7021C058F7C008A8288 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				F2DDE6CE1C0578CF008A8288 /* AppDelegate.h */,
+				F2DDE6CF1C0578CF008A8288 /* AppDelegate.m */,
+			);
+			name = AppDelegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,10 +304,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2DDE6D31C0578CF008A8288 /* ViewController.m in Sources */,
 				F2DDE6D91C0578CF008A8288 /* MedTracker.xcdatamodeld in Sources */,
+				F2DDE7051C059A5D008A8288 /* PatientsTVC.m in Sources */,
 				F2DDE6D01C0578CF008A8288 /* AppDelegate.m in Sources */,
+				F2DDE70B1C059A8B008A8288 /* AddPatientVC.m in Sources */,
 				F2DDE6CD1C0578CF008A8288 /* main.m in Sources */,
+				F2DDE7081C059A75008A8288 /* PrescriptionTVC.m in Sources */,
+				F2DDE70E1C059AAD008A8288 /* AddPrescriptionVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
