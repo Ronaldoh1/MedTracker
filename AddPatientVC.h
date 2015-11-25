@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreViewController.h"
+#import "Patient.h"
 
-@interface AddPatientVC : UIViewController
+@interface AddPatientVC : CoreViewController
+
+@property (weak, nonatomic) IBOutlet UITextField *patientFirstName;
+@property (weak, nonatomic) IBOutlet UITextField *patientLastName;
+
+@property (nonatomic, strong) Patient *addPatient;
+
+
+- (IBAction)onCancelButtonTapped:(UIBarButtonItem *)sender;
+
+
+- (IBAction)onSaveButtonTapped:(UIBarButtonItem *)sender;
 
 @end

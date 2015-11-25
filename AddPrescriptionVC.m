@@ -10,4 +10,13 @@
 
 @implementation AddPrescriptionVC
 
+- (IBAction)onCancelButtonTapped:(UIBarButtonItem *)sender {
+
+    [super cancelAndDismiss];
+}
+
+- (IBAction)onSaveButtonTapped:(UIBarButtonItem *)sender {
+
+    [super saveAndDismiss];
+}
 @end

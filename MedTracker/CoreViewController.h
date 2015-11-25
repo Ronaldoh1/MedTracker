@@ -1,5 +1,5 @@
 //
-//  PrescriptionTVC.h
+//  CoreViewController.h
 //  MedTracker
 //
 //  Created by Ronald Hernandez on 11/25/15.
@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
-@interface PrescriptionTVC : UITableViewController
+@interface CoreViewController : UIViewController
+
+
+
+
+-(void)cancelAndDismiss;
+-(void)saveAndDismiss;
 
 @end

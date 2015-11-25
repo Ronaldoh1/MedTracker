@@ -16,12 +16,30 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="IoS-rL-KPW">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="hZ4-j5-ENh" detailTextLabel="U4V-8A-iYP" style="IBUITableViewCellStyleSubtitle" id="IoS-rL-KPW">
                                 <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IoS-rL-KPW" id="d4d-iI-0uu">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hZ4-j5-ENh">
+                                            <rect key="frame" x="15" y="5" width="32" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="U4V-8A-iYP">
+                                            <rect key="frame" x="15" y="25" width="41" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <animations/>
                                 </tableViewCellContentView>
                                 <animations/>
@@ -107,10 +125,22 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Patient" id="yn5-uU-AnJ">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Mxm-DR-iK0"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="1dR-BA-hWn"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Mxm-DR-iK0">
+                            <connections>
+                                <action selector="onCancelButtonTapped:" destination="CtW-Gg-kZH" id="NKo-hn-hwz"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="1dR-BA-hWn">
+                            <connections>
+                                <action selector="onSaveButtonTapped:" destination="CtW-Gg-kZH" id="R3h-5M-SUa"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="patientFirstName" destination="ETZ-ra-hRi" id="2Tb-yi-C9B"/>
+                        <outlet property="patientLastName" destination="XCZ-Jv-vOu" id="16Y-Ty-WIn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9fZ-I5-Xzb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -185,10 +215,23 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Prescription" id="gaz-kV-hOF">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="jgX-Tt-PV7"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Xha-3k-j8n"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="jgX-Tt-PV7">
+                            <connections>
+                                <action selector="onCancelButtonTapped:" destination="qDj-5b-hB5" id="jhP-gU-kZD"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Xha-3k-j8n">
+                            <connections>
+                                <action selector="onSaveButtonTapped:" destination="qDj-5b-hB5" id="b69-7u-6Jn"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="onSaveButtonTapped" destination="Xha-3k-j8n" id="7O3-kX-aXY"/>
+                        <outlet property="prescriptionInstructions" destination="fE1-rf-0C2" id="hRh-iF-Hdj"/>
+                        <outlet property="prescriptionName" destination="AVE-Kf-p0W" id="rvN-R4-8SE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LHa-dq-5Nd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -204,12 +247,30 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="oyi-s3-i7b">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="P9n-Sh-0mu" detailTextLabel="rzw-FF-d8g" style="IBUITableViewCellStyleSubtitle" id="oyi-s3-i7b">
                                 <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oyi-s3-i7b" id="nSG-wZ-QIi">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P9n-Sh-0mu">
+                                            <rect key="frame" x="15" y="5" width="32" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rzw-FF-d8g">
+                                            <rect key="frame" x="15" y="25" width="41" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <animations/>
                                 </tableViewCellContentView>
                                 <animations/>

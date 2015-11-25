@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Patient.h"
 
-@interface PatientsTVC : UITableViewController
+
+
+@interface PatientsTVC : UITableViewController <NSFetchedResultsControllerDelegate>
+
+@property (nonatomic, strong) Patient *patient;
+
 
 @end

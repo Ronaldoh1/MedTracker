@@ -10,4 +10,21 @@
 
 @implementation AddPatientVC
 
+
+- (IBAction)onCancelButtonTapped:(UIBarButtonItem *)sender {
+    //call parent class file.
+    [super cancelAndDismiss];
+
+    
+}
+
+- (IBAction)onSaveButtonTapped:(UIBarButtonItem *)sender {
+    //call parent class file.
+
+    self.addPatient.patientFirstName = self.patientFirstName.text;
+    self.addPatient.patientLastName = self.patientLastName.text;
+    
+    [super saveAndDismiss];
+}
+
 @end

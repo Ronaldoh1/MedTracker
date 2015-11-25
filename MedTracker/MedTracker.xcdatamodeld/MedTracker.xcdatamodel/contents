@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Automatic">
+    <entity name="Patient" representedClassName="Patient" syncable="YES">
+        <attribute name="patientFirstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="patientLastName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="prescriptions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Prescription" inverseName="patient" inverseEntity="Prescription" syncable="YES"/>
+    </entity>
+    <entity name="Prescription" representedClassName="Prescription" syncable="YES">
+        <attribute name="prescriptionInstruction" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="prescriptionName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="patient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="prescriptions" inverseEntity="Patient" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Patient" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="Prescription" positionX="594" positionY="54" width="128" height="88"/>
+    </elements>
 </model>
