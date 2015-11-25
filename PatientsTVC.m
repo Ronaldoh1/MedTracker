@@ -94,17 +94,26 @@
 }
 */
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+        NSManagedObjectContext *context = [self managedObjectContext];
+        Patient *patientToDelete = [self.fetchedResultsController objectAtIndexPath:indexPath];
+
+        [context deleteObject:patientToDelete];
+
+        //save changes
+
+        NSError *error = nil;
+        if (![context save:&error]) {
+            NSLog(@"Error %@", error);
+        }
+    }
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.
@@ -120,7 +129,6 @@
 }
 */
 
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -130,11 +138,11 @@
 
     //ask Segue identiferi
     UINavigationController *nav = segue.destinationViewController;
-     //AddPatientVC *addPatientVC = (AddPatientVC *)[segue destinationViewController];
+    //AddPatientVC *addPatientVC = (AddPatientVC *)[segue destinationViewController];
 
 
     if ([segue.identifier isEqualToString:@"addPatient"]) {
-        
+
 
 
         Patient *addPatient = [NSEntityDescription insertNewObjectForEntityForName:@"Patient" inManagedObjectContext:[self managedObjectContext]];
@@ -143,9 +151,69 @@
 
         addPatientVC.addPatient = addPatient;
     }
-
-
+    
+    
 }
+
+#pragma mark - Fetch Results Controller Delegates
+
+-(void)controllerWillChangeContent:(NSFetchedResultsController *)controller{
+    [self.tableView beginUpdates];
+}
+
+-(void)controllerDidChangeContent:(NSFetchedResultsController *)controller{
+
+    [self.tableView endUpdates];
+}
+
+//What kind of update happened? this is where we take a look at each potential change.
+
+-(void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath{
+
+    UITableView *tableView = self.tableView;// create temporary placeholder
+
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
+        case NSFetchedResultsChangeUpdate: {
+            Patient *changePatient = [self.fetchedResultsController objectAtIndexPath:indexPath];
+            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            cell.textLabel.text = changePatient.patientLastName;
+
+        }
+            break;
+
+            case NSFetchedResultsChangeMove:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+
+            break;
+
+        default:
+            break;
+    }
+}
+
+-(void)controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type{
+
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+
+        default:
+            break;
+    }
+}
+
 
 
 #pragma mark - Fetched Results Controller Section 
