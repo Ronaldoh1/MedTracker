@@ -1,27 +1,25 @@
 //
-//  PatientsTVC.m
+//  PrescriptionTVC.m
 //  MedTracker
 //
-//  Created by Ronald Hernandez on 11/25/15.
+//  Created by Ronald Hernandez on 11/26/15.
 //  Copyright © 2015 HardCoders. All rights reserved.
 //
 
-#import "PatientsTVC.h"
+#import "PrescriptionTVC.h"
+#import "AddPrescriptionVC.h"
+#import "Prescription.h"
 #import "AppDelegate.h"
-#import "AddPatientVC.h"
 
-@interface PatientsTVC ()
+@interface PrescriptionTVC ()
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
-
-//We perform a fetch request
-
 @end
 
-@implementation PatientsTVC
+@implementation PrescriptionTVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,20 +30,14 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
-    //Implement the FetchRequest.
-
     NSError *error = nil;
 
     if (![[self fetchedResultsController]performFetch:&error]) {
-        NSLog(@"Error! %@", error);
+        NSLog(@"Error!, %@", error);
         abort();
     }
-
-
 }
 -(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:YES];
-
     [self.tableView reloadData];
 }
 
@@ -61,15 +53,17 @@
     return [(AppDelegate *)[[UIApplication sharedApplication]delegate]managedObjectContext];
 }
 
+
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    return [[self.fetchedResultsController sections]count];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
+    
     id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections]objectAtIndex:section];
 
     return [sectionInfo numberOfObjects];
@@ -80,12 +74,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     // Configure the cell...
+    Prescription *prescription = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
-    Patient *patient = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
-    cell.textLabel.text = patient.patientLastName;
-    cell.detailTextLabel.text = patient.patientFirstName;
-
+    cell.textLabel.text = prescription.prescriptionName;
+    cell.detailTextLabel.text = prescription.prescriptionInstruction;
     
     return cell;
 }
@@ -99,26 +91,17 @@
 }
 */
 
-
+/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        NSManagedObjectContext *context = [self managedObjectContext];
-        Patient *patientToDelete = [self.fetchedResultsController objectAtIndexPath:indexPath];
-
-        [context deleteObject:patientToDelete];
-
-        //save changes
-
-        NSError *error = nil;
-        if (![context save:&error]) {
-            NSLog(@"Error %@", error);
-        }
-    }
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }   
 }
-
+*/
 
 /*
 // Override to support rearranging the table view.
@@ -134,6 +117,7 @@
 }
 */
 
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -141,43 +125,71 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 
-    //ask Segue identiferi
+    if ([segue.identifier isEqualToString:@"addPrescription"]) {
+        UINavigationController *nav = segue.destinationViewController;
 
-    //AddPatientVC *addPatientVC = (AddPatientVC *)[segue destinationViewController];
+        AddPrescriptionVC *destinationVC = (AddPrescriptionVC *)[nav topViewController];
 
+        Prescription *addPrescription = [NSEntityDescription insertNewObjectForEntityForName:@"Prescription" inManagedObjectContext:[self managedObjectContext]];
 
-    if ([segue.identifier isEqualToString:@"addPatient"]) {
+        destinationVC.prescriptionsPatient = self.selectedPatient;
 
-    UINavigationController *nav = segue.destinationViewController;
-
-        Patient *addPatient = [NSEntityDescription insertNewObjectForEntityForName:@"Patient" inManagedObjectContext:[self managedObjectContext]];
-
-        AddPatientVC *addPatientVC = (AddPatientVC *)[nav topViewController];
-
-        addPatientVC.addPatient = addPatient;
-    }
-
-    if ([segue.identifier isEqualToString:@"toPrescriptions"]){
-
-        PrescriptionTVC *prescriptionTVC = segue.destinationViewController;
-
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-
-        Patient *selectedPatient = (Patient *)[self.fetchedResultsController objectAtIndexPath:indexPath];
+        destinationVC.prescription = addPrescription;
         
 
-        prescriptionTVC.selectedPatient = selectedPatient;
-
     }
-    
-    
 }
 
+
+#pragma mark - Fetched Results Controller Section
+
+-(NSFetchedResultsController *)fetchedResultsController{
+
+    if (_fetchedResultsController != nil) {
+        return _fetchedResultsController;
+    }
+
+    //if you dont have one, you have to create it.
+
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
+
+    NSManagedObjectContext *context = [self managedObjectContext];
+
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Prescription" inManagedObjectContext:context];
+
+    [fetchRequest setEntity:entity];
+
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"prescriptionName" ascending:YES];
+
+    //fetch results only for the patient selected. Only give us results for selected patients.
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"patient = %@", self.selectedPatient];
+
+    [fetchRequest setPredicate:predicate];
+
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+
+
+    fetchRequest.sortDescriptors = sortDescriptors;
+
+    _fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:nil];
+
+
+    _fetchedResultsController.delegate = self;
+    
+    return _fetchedResultsController;
+
+
+}
 #pragma mark - Fetch Results Controller Delegates
+
+//hey tableview get ready for some updates.
 
 -(void)controllerWillChangeContent:(NSFetchedResultsController *)controller{
     [self.tableView beginUpdates];
 }
+
+//hey tableview we finished doing updates.
 
 -(void)controllerDidChangeContent:(NSFetchedResultsController *)controller{
 
@@ -198,14 +210,14 @@
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 
         case NSFetchedResultsChangeUpdate: {
-            Patient *changePatient = [self.fetchedResultsController objectAtIndexPath:indexPath];
+            Prescription *changePrescription = [self.fetchedResultsController objectAtIndexPath:indexPath];
             UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-            cell.textLabel.text = changePatient.patientLastName;
+            cell.textLabel.text = changePrescription.prescriptionName;
 
         }
             break;
 
-            case NSFetchedResultsChangeMove:
+        case NSFetchedResultsChangeMove:
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -234,37 +246,6 @@
 
 
 
-#pragma mark - Fetched Results Controller Section 
 
--(NSFetchedResultsController *)fetchedResultsController{
-
-    if (_fetchedResultsController != nil) {
-        return _fetchedResultsController;
-    }
-
-    //if you dont have one, you have to create it.
-
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
-
-    NSManagedObjectContext *context = [self managedObjectContext];
-
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Patient" inManagedObjectContext:context];
-
-    [fetchRequest setEntity:entity];
-
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"patientLastName" ascending:YES];
-
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-
-
-    fetchRequest.sortDescriptors = sortDescriptors;
-
-    _fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:nil];
-
-
-    _fetchedResultsController.delegate = self;
-
-    return _fetchedResultsController;
-}
 
 @end

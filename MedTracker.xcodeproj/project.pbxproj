@@ -23,6 +23,7 @@
 		F2DDE7241C062985008A8288 /* Prescription.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DDE71E1C062985008A8288 /* Prescription.m */; };
 		F2DDE7251C062985008A8288 /* Patient+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DDE7201C062985008A8288 /* Patient+CoreDataProperties.m */; };
 		F2DDE7261C062985008A8288 /* Patient.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DDE7221C062985008A8288 /* Patient.m */; };
+		F2DDE7291C06FE79008A8288 /* PrescriptionTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DDE7281C06FE78008A8288 /* PrescriptionTVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,8 @@
 		F2DDE7201C062985008A8288 /* Patient+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Patient+CoreDataProperties.m"; path = "../Patient+CoreDataProperties.m"; sourceTree = "<group>"; };
 		F2DDE7211C062985008A8288 /* Patient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Patient.h; path = ../Patient.h; sourceTree = "<group>"; };
 		F2DDE7221C062985008A8288 /* Patient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Patient.m; path = ../Patient.m; sourceTree = "<group>"; };
+		F2DDE7271C06FE78008A8288 /* PrescriptionTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrescriptionTVC.h; sourceTree = "<group>"; };
+		F2DDE7281C06FE78008A8288 /* PrescriptionTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrescriptionTVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 				F2DDE7011C058B8D008A8288 /* Data */,
 				F2DDE7181C062754008A8288 /* PatientsTVC.h */,
 				F2DDE7191C062754008A8288 /* PatientsTVC.m */,
+				F2DDE7271C06FE78008A8288 /* PrescriptionTVC.h */,
+				F2DDE7281C06FE78008A8288 /* PrescriptionTVC.m */,
 				F2DDE7091C059A8A008A8288 /* AddPatientVC.h */,
 				F2DDE70A1C059A8B008A8288 /* AddPatientVC.m */,
 				F2DDE70C1C059AAD008A8288 /* AddPrescriptionVC.h */,
@@ -331,6 +336,7 @@
 				F2DDE7261C062985008A8288 /* Patient.m in Sources */,
 				F2DDE70B1C059A8B008A8288 /* AddPatientVC.m in Sources */,
 				F2DDE6CD1C0578CF008A8288 /* main.m in Sources */,
+				F2DDE7291C06FE79008A8288 /* PrescriptionTVC.m in Sources */,
 				F2DDE70E1C059AAD008A8288 /* AddPrescriptionVC.m in Sources */,
 				F2DDE7241C062985008A8288 /* Prescription.m in Sources */,
 				F2DDE7111C06191E008A8288 /* CoreViewController.m in Sources */,

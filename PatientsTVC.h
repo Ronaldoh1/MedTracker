@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Patient.h"
-
+#import "PrescriptionTVC.h"
 
 
 @interface PatientsTVC : UITableViewController <NSFetchedResultsControllerDelegate>

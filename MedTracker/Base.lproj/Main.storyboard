@@ -228,7 +228,6 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="onSaveButtonTapped" destination="Xha-3k-j8n" id="7O3-kX-aXY"/>
                         <outlet property="prescriptionInstructions" destination="fE1-rf-0C2" id="hRh-iF-Hdj"/>
                         <outlet property="prescriptionName" destination="AVE-Kf-p0W" id="rvN-R4-8SE"/>
                     </connections>
